@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* Navy primary */
+    --primary: 217 45% 18%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 217 45% 18%;
+
+    --muted: 214 32% 94%;
+    --muted-foreground: 215 16% 42%;
+
+    /* Amber accent */
+    --accent: 32 96% 50%;
+    --accent-foreground: 20 90% 12%;
+
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 25% 86%;
+    --input: 214 25% 86%;
+    --ring: 32 96% 50%;
+
+    --radius: 0.6rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  /* Hide number-input spinners for the quantity fields */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Capture mode — applied while html2canvas snapshots the quote so the */
+/* output is chrome-free and shows the full table (no sticky/scroll).  */
+/* ------------------------------------------------------------------ */
+.capturing .no-print {
+  display: none !important;
+}
+.capturing .overflow-x-auto {
+  overflow: visible !important;
+}
+.capturing .sticky {
+  position: static !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Print stylesheet — §8.4: hide all UI chrome, print only the quote  */
+/* ------------------------------------------------------------------ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  /* Hide everything flagged as screen-only chrome */
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+
+  /* The quote document expands to fill the printed page */
+  .print-area {
+    position: static !important;
+    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .print-area,
+  .print-area * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
