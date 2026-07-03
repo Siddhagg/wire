@@ -62,3 +62,5 @@ No environment variables are required for this phase.
 
 > Phase 2: a Supabase persistence layer will replace `localStorage`. The stub
 > is marked in `app/discounts/page.tsx`.
+
+<!-- deploy-trigger: 2026-07-03T04:27Z -->
